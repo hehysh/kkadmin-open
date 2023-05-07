@@ -13,8 +13,9 @@ jobs:
     strategy:
       matrix:
         node-version: [18.x]
-        
     steps:
+      # check it to your workflow can access it
+      # from: https://github.com/actions/checkout
       - name: 1. 检查master分支
         uses: actions/checkout@master
 
@@ -35,7 +36,6 @@ jobs:
         if: steps.cache-dependencies.outputs.cache-hit != 'true'
         run: |
           yarn install
-
       - name: 5. 生成页面并压缩
         env:
           TZ: Asia/Shanghai
@@ -45,8 +45,7 @@ jobs:
           VITE_GLOB_APP_TITLE: ${{ secrets.VITE_GLOB_APP_TITLE }}
         run: |
           yarn run build
-
-       - name: Deploy # 部署
+      - name: 6. 推送到vercel分支
         run: |
           git config --global user.name "hehysh"
           git config --global user.email "hehysh@163.com"
