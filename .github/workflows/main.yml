@@ -55,4 +55,5 @@ jobs:
           git add -A
           git commit -m "workflow[bot]"
           git remote add origin [https://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@github.com/hehysh/kkadmin-open]
+          git pull --rebase origin vercel
           git push origin vercel -f
