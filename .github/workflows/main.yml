@@ -47,12 +47,14 @@ jobs:
         run: |
           yarn run build
 
-      - name: 6. 推送到vercel分支
-        uses: peaceiris/actions-gh-pages@v3.9.1
-        with:
-          github_token: $
-          publish_branch: vercel
-          publish_dir: ./dist
-          user_name: 'github-actions[bot]'
-          user_email: 'github-actions[bot]@users.noreply.github.com'
-          full_commit_message: ${{ github.event.head_commit.message }}
+       - name: Deploy # 部署
+        run: |
+          git config --global user.name "hehysh"
+          git config --global user.email "hehysh@163.com"
+          export TZ='Asia/Shanghai'
+          cd dist
+          git init
+          git add -A
+          git commit -m "workflow[bot]"
+          git remote add origin [https://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@github.com/hehysh/kkadmin-open]
+          git push origin vercel -f
