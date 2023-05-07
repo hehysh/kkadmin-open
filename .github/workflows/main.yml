@@ -13,7 +13,7 @@ jobs:
     strategy:
       matrix:
         node-version: [18.x]
-  steps:
+ steps:
       - name: 1. 检查master分支
         uses: actions/checkout@master
 
